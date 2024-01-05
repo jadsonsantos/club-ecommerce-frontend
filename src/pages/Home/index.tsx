@@ -1,9 +1,11 @@
+import Categories from 'components/Categories'
 import Header from 'components/Header'
 
 const Home = () => {
   return (
     <div>
       <Header />
+      <Categories />
     </div>
   )
 }
