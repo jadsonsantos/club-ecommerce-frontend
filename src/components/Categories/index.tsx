@@ -3,7 +3,7 @@ import axios from 'axios'
 import env from 'config/env.config'
 import Category from 'types/category.types'
 
-import CategoryItem from 'components/CatagoryItem'
+import CategoryItem from 'components/CategoryItem'
 
 import * as S from './Categories.styles'
 
