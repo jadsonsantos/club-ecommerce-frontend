@@ -16,12 +16,17 @@ import {
   LoginSubtitle
 } from './Login.styles'
 
+interface LogInForm {
+  email: string
+  password: string
+}
+
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm()
+  } = useForm<LogInForm>()
 
   const handleSubmitPress = (data: any) => {
     console.log({ data })
@@ -66,6 +71,7 @@ const LoginPage = () => {
             <CustomInput
               hasError={!!errors?.password}
               placeholder='Digite sua senha'
+              type='password'
               {...register('password', { required: true })}
             />
             {errors?.password?.type === 'required' && (
@@ -74,12 +80,8 @@ const LoginPage = () => {
           </LoginInputContainer>
 
           <CustomButton
-            startIcon={
-              <FiLogIn
-                size={18}
-                onClick={() => handleSubmit(handleSubmitPress)()}
-              />
-            }
+            startIcon={<FiLogIn size={18} />}
+            onClick={() => handleSubmit(handleSubmitPress)()}
           >
             Entrar
           </CustomButton>
