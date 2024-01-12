@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
+import LogInForm from 'types/login.types'
 import validator from 'validator'
 
 import CustomButton from 'components/CustomButton'
@@ -15,22 +16,22 @@ import {
   LoginInputContainer,
   LoginSubtitle
 } from './Login.styles'
-
-interface LogInForm {
-  email: string
-  password: string
-}
+import useLogin from './useLogin'
 
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm<LogInForm>()
 
-  const handleSubmitPress = (data: any) => {
-    console.log({ data })
-  }
+  const { handleSubmitPress } = useLogin(setError)
+
+  const isNotFoundEmail = errors?.email?.type === 'notFound'
+
+  const isMismatchPassword = errors?.password?.type === 'mismatch'
+
   return (
     <>
       <Header />
@@ -60,12 +61,19 @@ const LoginPage = () => {
               <InputErrorMessage>O e-mail é obrigatório.</InputErrorMessage>
             )}
 
+            {isNotFoundEmail && (
+              <InputErrorMessage>
+                O e-mail não foi encontrado.
+              </InputErrorMessage>
+            )}
+
             {errors?.email?.type === 'validate' && (
               <InputErrorMessage>
                 Por favor, insira um e-mail válido.
               </InputErrorMessage>
             )}
           </LoginInputContainer>
+
           <LoginInputContainer>
             <p>Senha</p>
             <CustomInput
@@ -74,8 +82,13 @@ const LoginPage = () => {
               type='password'
               {...register('password', { required: true })}
             />
+
             {errors?.password?.type === 'required' && (
               <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {isMismatchPassword && (
+              <InputErrorMessage>A senha é inválida.</InputErrorMessage>
             )}
           </LoginInputContainer>
 
