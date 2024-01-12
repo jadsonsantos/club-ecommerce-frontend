@@ -1,9 +1,13 @@
 import { auth, db } from 'config/firebase.config'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  AuthError,
+  AuthErrorCodes,
+  createUserWithEmailAndPassword
+} from 'firebase/auth'
 import { addDoc, collection } from 'firebase/firestore'
 import SignUpForm from 'types/signup.types'
 
-const useSignUp = () => {
+const useSignUp = (setError: any) => {
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
       const userCredentials = await createUserWithEmailAndPassword(
@@ -21,7 +25,11 @@ const useSignUp = () => {
         lastName: data.lastName
       })
     } catch (error) {
-      console.error(error)
+      const _error = error as AuthError
+
+      if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
+        return setError('email', { type: 'alreadyInUse' })
+      }
     }
   }
 

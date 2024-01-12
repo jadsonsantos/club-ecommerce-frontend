@@ -21,10 +21,11 @@ const SignUp = () => {
     register,
     handleSubmit,
     watch,
+    setError,
     formState: { errors }
   } = useForm<SignUpForm>()
 
-  const { handleSubmitPress } = useSignUp()
+  const { handleSubmitPress } = useSignUp(setError)
 
   const watchPassword = watch('password')
 
@@ -75,6 +76,12 @@ const SignUp = () => {
               <InputErrorMessage>O e-mail é obrigatório.</InputErrorMessage>
             )}
 
+            {errors?.email?.type === 'alreadyInUse' && (
+              <InputErrorMessage>
+                Este e-mail já está sendo utilizado.
+              </InputErrorMessage>
+            )}
+
             {errors?.email?.type === 'validate' && (
               <InputErrorMessage>
                 Por favor, insira um e-mail válido.
@@ -88,10 +95,17 @@ const SignUp = () => {
               placeholder='Digite sua senha'
               type='password'
               hasError={!!errors?.password}
-              {...register('password', { required: true })}
+              {...register('password', { required: true, minLength: 6 })}
             />
+
             {errors?.password?.type === 'required' && (
               <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === 'minLength' && (
+              <InputErrorMessage>
+                A senha precisa ter no mínimo 6 caracteres.
+              </InputErrorMessage>
             )}
           </SignUpInputContainer>
 
@@ -103,6 +117,7 @@ const SignUp = () => {
               hasError={!!errors?.passwordConfirmation}
               {...register('passwordConfirmation', {
                 required: true,
+                minLength: 6,
                 validate: (value) => {
                   return value === watchPassword
                 }
@@ -111,6 +126,12 @@ const SignUp = () => {
 
             {errors?.passwordConfirmation?.type === 'required' && (
               <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {errors?.passwordConfirmation?.type === 'minLength' && (
+              <InputErrorMessage>
+                A confirmação de senha precisa ter no mínimo 6 caracteres.
+              </InputErrorMessage>
             )}
 
             {errors?.passwordConfirmation?.type === 'validate' && (
