@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
+import SignUpForm from 'types/signup.types'
 import validator from 'validator'
 
 import CustomButton from 'components/CustomButton'
@@ -13,14 +14,7 @@ import {
   SignUpHeadline,
   SignUpInputContainer
 } from './styles'
-
-interface SignUpForm {
-  name: string
-  lastName: string
-  email: string
-  password: string
-  passwordConfirmation: string
-}
+import useSignUp from './useSignUp'
 
 const SignUp = () => {
   const {
@@ -30,9 +24,7 @@ const SignUp = () => {
     formState: { errors }
   } = useForm<SignUpForm>()
 
-  const handleSubmitPress = (data: any) => {
-    console.log({ data })
-  }
+  const { handleSubmitPress } = useSignUp()
 
   const watchPassword = watch('password')
 
@@ -46,10 +38,10 @@ const SignUp = () => {
             <p>Nome</p>
             <CustomInput
               placeholder='Digite seu nome'
-              hasError={!!errors?.name}
-              {...register('name', { required: true })}
+              hasError={!!errors?.firstName}
+              {...register('firstName', { required: true })}
             />
-            {errors?.name?.type === 'required' && (
+            {errors?.firstName?.type === 'required' && (
               <InputErrorMessage>O nome é obrigatório.</InputErrorMessage>
             )}
           </SignUpInputContainer>
