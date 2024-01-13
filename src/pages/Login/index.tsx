@@ -26,7 +26,7 @@ const LoginPage = () => {
     formState: { errors }
   } = useForm<LogInForm>()
 
-  const { handleSubmitPress } = useLogin(setError)
+  const { handleSubmitPress, handleSignInWithGooglePress } = useLogin(setError)
 
   const isNotFoundEmail = errors?.email?.type === 'notFound'
 
@@ -39,7 +39,10 @@ const LoginPage = () => {
         <LoginContent>
           <LoginHeadline>Entre com a sua conta</LoginHeadline>
 
-          <CustomButton startIcon={<BsGoogle size={18} />}>
+          <CustomButton
+            startIcon={<BsGoogle size={18} />}
+            onClick={handleSignInWithGooglePress}
+          >
             Entrar com o Google
           </CustomButton>
 

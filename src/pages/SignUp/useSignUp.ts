@@ -22,7 +22,8 @@ const useSignUp = (setError: any) => {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
         firstName: data.firstName,
-        lastName: data.lastName
+        lastName: data.lastName,
+        provider: 'firebase'
       })
     } catch (error) {
       const _error = error as AuthError

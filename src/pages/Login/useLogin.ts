@@ -1,9 +1,11 @@
-import { auth } from 'config/firebase.config'
+import { auth, db, googleProvider } from 'config/firebase.config'
 import {
   AuthError,
   AuthErrorCodes,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signInWithPopup
 } from 'firebase/auth'
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import LogInForm from 'types/login.types'
 
 const useLogin = (setError: any) => {
@@ -33,7 +35,37 @@ const useLogin = (setError: any) => {
     }
   }
 
-  return { handleSubmitPress }
+  const handleSignInWithGooglePress = async () => {
+    try {
+      const userCredentials = await signInWithPopup(auth, googleProvider)
+
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, 'users'),
+          where('id', '==', userCredentials.user.uid)
+        )
+      )
+
+      const user = querySnapshot.docs[0]?.data()
+
+      if (!user) {
+        const firstName = userCredentials.user.displayName?.split(' ')[0]
+        const lastName = userCredentials.user.displayName?.split(' ')[1]
+
+        await addDoc(collection(db, 'users'), {
+          id: userCredentials.user.uid,
+          email: userCredentials.user.email,
+          firstName,
+          lastName,
+          provider: 'google'
+        })
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return { handleSubmitPress, handleSignInWithGooglePress }
 }
 
 export default useLogin
