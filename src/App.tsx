@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { auth, db } from 'config/firebase.config'
 import { UserContext } from 'contexts/user.context'
+import { userConverter } from 'converters/firestore.converters'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import Home from 'pages/Home'
@@ -23,12 +24,16 @@ const App = () => {
 
     if (isSignIn) {
       const querySnapShot = await getDocs(
-        query(collection(db, 'users'), where('id', '==', user.uid))
+        query(
+          collection(db, 'users').withConverter(userConverter),
+          where('id', '==', user.uid)
+        )
       )
 
       const userFromFirestore = querySnapShot.docs[0]?.data()
 
-      loginUser(userFromFirestore as any)
+      loginUser(userFromFirestore)
+
       return setIsInitializing(false)
     }
 
