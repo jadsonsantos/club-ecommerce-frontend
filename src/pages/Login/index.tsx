@@ -11,6 +11,7 @@ import CustomButton from 'components/CustomButton'
 import CustomInput from 'components/CustomInput'
 import Header from 'components/Header'
 import InputErrorMessage from 'components/InputErrorMessage'
+import Loading from 'components/Loading'
 
 import {
   LoginContainer,
@@ -29,7 +30,8 @@ const LoginPage = () => {
     formState: { errors }
   } = useForm<LogInForm>()
 
-  const { handleSubmitPress, handleSignInWithGooglePress } = useLogin(setError)
+  const { handleSubmitPress, handleSignInWithGooglePress, isLoading } =
+    useLogin(setError)
   const { isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -44,6 +46,9 @@ const LoginPage = () => {
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
+
       <LoginContainer>
         <LoginContent>
           <LoginHeadline>Entre com a sua conta</LoginHeadline>

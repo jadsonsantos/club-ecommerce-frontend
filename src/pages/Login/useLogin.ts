@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { auth, db, googleProvider } from 'config/firebase.config'
 import {
   AuthError,
@@ -9,8 +10,12 @@ import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import LogInForm from 'types/login.types'
 
 const useLogin = (setError: any) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleSubmitPress = async (data: LogInForm) => {
     try {
+      setIsLoading(true)
+
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -32,11 +37,15 @@ const useLogin = (setError: any) => {
         // setError('email', { type: 'invalid' })
         // setError('password', { type: 'invalid' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleSignInWithGooglePress = async () => {
     try {
+      setIsLoading(true)
+
       const userCredentials = await signInWithPopup(auth, googleProvider)
 
       const querySnapshot = await getDocs(
@@ -62,10 +71,12 @@ const useLogin = (setError: any) => {
       }
     } catch (error) {
       console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  return { handleSubmitPress, handleSignInWithGooglePress }
+  return { handleSubmitPress, handleSignInWithGooglePress, isLoading }
 }
 
 export default useLogin
