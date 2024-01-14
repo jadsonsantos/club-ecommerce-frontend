@@ -9,6 +9,8 @@ import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
 import SignUp from 'pages/SignUp'
 
+import Loading from 'components/Loading'
+
 const App = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
   const [isInitializing, setIsInitializing] = useState(true)
@@ -40,7 +42,7 @@ const App = () => {
     return setIsInitializing(false)
   })
 
-  if (isInitializing) return null
+  if (isInitializing) return <Loading />
 
   return (
     <BrowserRouter>
