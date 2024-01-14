@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { auth, db } from 'config/firebase.config'
 import {
   AuthError,
@@ -8,8 +9,12 @@ import { addDoc, collection } from 'firebase/firestore'
 import SignUpForm from 'types/signup.types'
 
 const useSignUp = (setError: any) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleSubmitPress = async (data: SignUpForm) => {
     try {
+      setIsLoading(true)
+
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -31,11 +36,14 @@ const useSignUp = (setError: any) => {
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
         return setError('email', { type: 'alreadyInUse' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return {
-    handleSubmitPress
+    handleSubmitPress,
+    isLoading
   }
 }
 

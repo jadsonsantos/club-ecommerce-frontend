@@ -10,6 +10,7 @@ import CustomButton from 'components/CustomButton'
 import CustomInput from 'components/CustomInput'
 import Header from 'components/Header'
 import InputErrorMessage from 'components/InputErrorMessage'
+import Loading from 'components/Loading'
 
 import {
   SignUpContainer,
@@ -28,7 +29,7 @@ const SignUp = () => {
     formState: { errors }
   } = useForm<SignUpForm>()
 
-  const { handleSubmitPress } = useSignUp(setError)
+  const { handleSubmitPress, isLoading } = useSignUp(setError)
   const { isAuthenticated } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -41,6 +42,9 @@ const SignUp = () => {
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
+
       <SignUpContainer>
         <SignUpContent>
           <SignUpHeadline>Crie sua conta</SignUpHeadline>
