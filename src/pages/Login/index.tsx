@@ -1,6 +1,9 @@
+import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from 'contexts/user.context'
 import LogInForm from 'types/login.types'
 import validator from 'validator'
 
@@ -27,10 +30,16 @@ const LoginPage = () => {
   } = useForm<LogInForm>()
 
   const { handleSubmitPress, handleSignInWithGooglePress } = useLogin(setError)
+  const { isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const isNotFoundEmail = errors?.email?.type === 'notFound'
 
   const isMismatchPassword = errors?.password?.type === 'mismatch'
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/')
+  }, [isAuthenticated])
 
   return (
     <>

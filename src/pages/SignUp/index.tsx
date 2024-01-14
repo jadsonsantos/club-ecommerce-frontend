@@ -1,5 +1,8 @@
+import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from 'contexts/user.context'
 import SignUpForm from 'types/signup.types'
 import validator from 'validator'
 
@@ -26,8 +29,14 @@ const SignUp = () => {
   } = useForm<SignUpForm>()
 
   const { handleSubmitPress } = useSignUp(setError)
+  const { isAuthenticated } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const watchPassword = watch('password')
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/')
+  }, [isAuthenticated])
 
   return (
     <>
