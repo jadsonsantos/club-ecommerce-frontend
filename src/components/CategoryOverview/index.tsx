@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import Category from 'types/category.types'
+
+import ProductItem from 'components/ProductItem'
 
 import { CategoryContainer, CategoryTitle, ProductsContainer } from './styles'
 
@@ -13,7 +15,11 @@ const CategoryOverview: FunctionComponent<CategoryOverviewProps> = ({
   return (
     <CategoryContainer>
       <CategoryTitle>{category.displayName}</CategoryTitle>
-      <ProductsContainer></ProductsContainer>
+      <ProductsContainer>
+        {category.products.slice(0, 4).map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </ProductsContainer>
     </CategoryContainer>
   )
 }
