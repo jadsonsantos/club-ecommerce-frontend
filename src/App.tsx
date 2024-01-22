@@ -5,6 +5,7 @@ import { UserContext } from 'contexts/user.context'
 import { userConverter } from 'converters/firestore.converters'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import Explore from 'pages/Explore'
 import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
 import SignUp from 'pages/SignUp'
@@ -48,6 +49,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/explore' element={<Explore />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>

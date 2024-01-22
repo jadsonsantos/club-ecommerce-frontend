@@ -1,11 +1,11 @@
-import React from 'react'
-
+import CategoriesOverview from 'components/CategoriesOverview'
 import Header from 'components/Header'
 
 const Explore = () => {
   return (
     <>
       <Header />
+      <CategoriesOverview />
     </>
   )
 }
