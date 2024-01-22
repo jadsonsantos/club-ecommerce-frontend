@@ -9,7 +9,7 @@ interface CategoryItemProps {
 
 const CategoryItem: FunctionComponent<CategoryItemProps> = ({ category }) => {
   return (
-    <S.CategoryItemContainer backgroundImage={category.imageUrl}>
+    <S.CategoryItemContainer backgroundimage={category.imageUrl}>
       <S.CategoryName>
         <p>{category.displayName}</p>
         <p>Explorar</p>
