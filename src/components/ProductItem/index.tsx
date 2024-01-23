@@ -1,5 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent, useContext } from 'react'
+import { BsCartPlus } from 'react-icons/bs'
+import { CartContext } from 'contexts/cart.context'
 import Product from 'types/product.types'
+
+import CustomButton from 'components/CustomButton'
 
 import { ProductContainer, ProductImage, ProductInfo } from './styles'
 
@@ -8,9 +12,20 @@ interface ProductItemProps {
 }
 
 const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
+  const { addProductToCart } = useContext(CartContext)
+
+  const handleAddToCartClick = () => {
+    addProductToCart(product)
+  }
+
   return (
     <ProductContainer>
-      <ProductImage imageurl={product.imageUrl} />
+      <ProductImage imageurl={product.imageUrl}>
+        <CustomButton startIcon={<BsCartPlus />} onClick={handleAddToCartClick}>
+          Adicionar ao carrinho
+        </CustomButton>
+      </ProductImage>
+
       <ProductInfo>
         <p>{product.name}</p>
         <p>R${product.price}</p>
