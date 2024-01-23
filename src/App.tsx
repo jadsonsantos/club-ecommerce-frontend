@@ -11,6 +11,7 @@ import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
 import SignUp from 'pages/SignUp'
 
+import Cart from 'components/Cart'
 import Loading from 'components/Loading'
 
 const App: FunctionComponent = () => {
@@ -55,6 +56,7 @@ const App: FunctionComponent = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>
+      <Cart />
     </BrowserRouter>
   )
 }

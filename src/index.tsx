@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import CartContextProvider from 'contexts/cart.context'
 import CategoryContextProvider from 'contexts/categories.context'
 import UserContextProvider from 'contexts/user.context'
 
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <UserContextProvider>
       <CategoryContextProvider>
-        <App />
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
       </CategoryContextProvider>
     </UserContextProvider>
   </React.StrictMode>
