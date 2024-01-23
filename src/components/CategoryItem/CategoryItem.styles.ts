@@ -20,6 +20,7 @@ export const CategoryItemContainer = styled.div<CategoryItemContainerProps>`
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: color;
   background-image: ${({ backgroundimage }) => `url("${backgroundimage}")`};
+  cursor: pointer;
 `
 
 export const CategoryName = styled.div`
@@ -36,7 +37,6 @@ export const CategoryName = styled.div`
   transition: all 0.5s ease;
 
   &:hover {
-    cursor: pointer;
     background: rgba(233, 236, 239, 0.55);
   }
 

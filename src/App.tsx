@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react'
+import { FunctionComponent, useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { auth, db } from 'config/firebase.config'
 import { UserContext } from 'contexts/user.context'
 import { userConverter } from 'converters/firestore.converters'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import CategoryDetails from 'pages/CategoryDetails'
 import Explore from 'pages/Explore'
 import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
@@ -12,7 +13,7 @@ import SignUp from 'pages/SignUp'
 
 import Loading from 'components/Loading'
 
-const App = () => {
+const App: FunctionComponent = () => {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext)
   const [isInitializing, setIsInitializing] = useState(true)
 
@@ -50,6 +51,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />} />
+        <Route path='/category/:id' element={<CategoryDetails />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>
