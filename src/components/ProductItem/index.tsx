@@ -12,10 +12,11 @@ interface ProductItemProps {
 }
 
 const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
-  const { addProductToCart } = useContext(CartContext)
+  const { addProductToCart, toggleCart } = useContext(CartContext)
 
   const handleAddToCartClick = () => {
     addProductToCart(product)
+    toggleCart()
   }
 
   return (
