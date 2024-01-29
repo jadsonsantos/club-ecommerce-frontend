@@ -1,4 +1,4 @@
-import React, { createContext, useMemo, useState } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import CartProduct from 'types/cart.types'
 import ChildrenProps from 'types/children.types'
 import Product from 'types/product.types'
@@ -30,6 +30,18 @@ export const CartContext = createContext<ICartContext>({
 const CartContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false)
   const [products, setProducts] = useState<CartProduct[]>([])
+
+  useEffect(() => {
+    const productsFromLocalStorage = JSON.parse(
+      localStorage.getItem('cartProducts')!
+    )
+
+    setProducts(productsFromLocalStorage)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('cartProducts', JSON.stringify(products))
+  }, [products])
 
   const toggleCart = () => {
     setIsVisible((prevState) => !prevState)
