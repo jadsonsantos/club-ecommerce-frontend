@@ -6,6 +6,7 @@ import { userConverter } from 'converters/firestore.converters'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import CategoryDetails from 'pages/CategoryDetails'
+import CheckoutPage from 'pages/Checkout'
 import Explore from 'pages/Explore'
 import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
@@ -53,6 +54,7 @@ const App: FunctionComponent = () => {
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />} />
         <Route path='/category/:id' element={<CategoryDetails />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUp />} />
       </Routes>

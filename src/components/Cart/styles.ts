@@ -37,6 +37,7 @@ export const CartContent = styled.div`
   padding: 20px;
   overflow-y: scroll;
 `
+
 export const CartTitle = styled.p`
   font-size: 1.325rem;
   font-weight: 600;
