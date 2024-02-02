@@ -36,7 +36,7 @@ const CartContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       localStorage.getItem('cartProducts')!
     )
 
-    setProducts(productsFromLocalStorage)
+    setProducts(productsFromLocalStorage || products)
   }, [])
 
   useEffect(() => {
