@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from 'contexts/user.context'
 import LogInForm from 'types/login.types'
 import validator from 'validator'
 
@@ -32,7 +32,11 @@ const LoginPage = () => {
 
   const { handleSubmitPress, handleSignInWithGooglePress, isLoading } =
     useLogin(setError)
-  const { isAuthenticated } = useContext(UserContext)
+
+  const { isAuthenticated } = useSelector(
+    (rootReducer: any) => rootReducer.userReducer
+  )
+
   const navigate = useNavigate()
 
   const isNotFoundEmail = errors?.email?.type === 'notFound'

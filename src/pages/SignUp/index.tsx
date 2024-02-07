@@ -1,8 +1,8 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from 'contexts/user.context'
 import SignUpForm from 'types/signup.types'
 import validator from 'validator'
 
@@ -30,7 +30,11 @@ const SignUp = () => {
   } = useForm<SignUpForm>()
 
   const { handleSubmitPress, isLoading } = useSignUp(setError)
-  const { isAuthenticated } = useContext(UserContext)
+
+  const { isAuthenticated } = useSelector(
+    (rootReducer: any) => rootReducer.userReducer
+  )
+
   const navigate = useNavigate()
 
   const watchPassword = watch('password')

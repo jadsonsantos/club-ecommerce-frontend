@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import CartContextProvider from 'contexts/cart.context'
 import CategoryContextProvider from 'contexts/categories.context'
-import UserContextProvider from 'contexts/user.context'
 import store from 'store/store'
 
 import App from './App'
@@ -15,13 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <UserContextProvider>
-        <CategoryContextProvider>
-          <CartContextProvider>
-            <App />
-          </CartContextProvider>
-        </CategoryContextProvider>
-      </UserContextProvider>
+      <CategoryContextProvider>
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
+      </CategoryContextProvider>
     </Provider>
   </React.StrictMode>
 )
