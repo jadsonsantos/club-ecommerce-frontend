@@ -1,15 +1,16 @@
-import { FunctionComponent, useContext, useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle,
   AiOutlineHome
 } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { clearCartProducts } from 'store/reducers/cart/cart.actions'
 
 import CustomButton from 'components/CustomButton'
 import Header from 'components/Header'
 
-import { CartContext } from '../../contexts/cart.context'
 // Utilities
 import Colors from '../../theme/theme.colors'
 
@@ -20,7 +21,7 @@ import {
 } from './styles'
 
 const PaymentConfirmationPage: FunctionComponent = () => {
-  const { clearProducts } = useContext(CartContext)
+  const dispatch = useDispatch()
 
   const [searchParams] = useSearchParams()
 
@@ -32,7 +33,7 @@ const PaymentConfirmationPage: FunctionComponent = () => {
 
   useEffect(() => {
     if (isApproved) {
-      clearProducts()
+      dispatch(clearCartProducts())
     }
   }, [status])
 
