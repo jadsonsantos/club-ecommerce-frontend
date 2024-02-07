@@ -18,13 +18,12 @@ import {
 } from './styles'
 
 const Cart = () => {
-  const { productsTotalPrice, products, productsCount } =
-    useContext(CartContext)
+  const { productsTotalPrice, productsCount } = useContext(CartContext)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { isVisible } = useAppSelector((state) => state.cartReducer)
+  const { isVisible, products } = useAppSelector((state) => state.cartReducer)
 
   const handleGoToCheckoutClick = () => {
     navigate('/checkout')
