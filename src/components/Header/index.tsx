@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from 'config/firebase.config'
 import { CartContext } from 'contexts/cart.context'
 import { signOut } from 'firebase/auth'
-import { logout } from 'store/reducers/user/user.actions'
+import { logoutUser } from 'store/reducers/user/user.actions'
 
 import * as S from './Header.styles'
 
@@ -29,7 +29,7 @@ const Header = () => {
   }
 
   const handleSignOutClick = () => {
-    dispatch(logout())
+    dispatch(logoutUser())
     signOut(auth)
   }
 

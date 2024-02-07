@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
-import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from 'hooks/redux.hooks'
 import SignUpForm from 'types/signup.types'
 import validator from 'validator'
 
@@ -31,8 +31,8 @@ const SignUp = () => {
 
   const { handleSubmitPress, isLoading } = useSignUp(setError)
 
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   )
 
   const navigate = useNavigate()
