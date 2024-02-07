@@ -13,6 +13,7 @@ import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
 import PaymentConfirmationPage from 'pages/PaymentConfirmation'
 import SignUp from 'pages/SignUp'
+import { loginUser, logout } from 'store/reducers/user/user.actions'
 
 import Cart from 'components/Cart'
 import Loading from 'components/Loading'
@@ -32,7 +33,7 @@ const App: FunctionComponent = () => {
       const isSignIn = !isAuthenticated && user
 
       if (isSignOut) {
-        dispatch({ type: 'LOGOUT_USER' })
+        dispatch(logout())
         return setIsInitializing(false)
       }
 
@@ -46,7 +47,7 @@ const App: FunctionComponent = () => {
 
         const userFromFirestore = querySnapShot.docs[0]?.data()
 
-        dispatch({ type: 'LOGIN_USER', payload: userFromFirestore })
+        dispatch(loginUser(userFromFirestore))
 
         return setIsInitializing(false)
       }
