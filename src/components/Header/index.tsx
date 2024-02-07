@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from 'config/firebase.config'
 import { CartContext } from 'contexts/cart.context'
 import { signOut } from 'firebase/auth'
+import { toggleCart } from 'store/reducers/cart/cart.actions'
 import { logoutUser } from 'store/reducers/user/user.actions'
 
 import * as S from './Header.styles'
@@ -18,7 +19,7 @@ const Header = () => {
     (rootReducer: any) => rootReducer.userReducer
   )
 
-  const { productsCount, toggleCart } = useContext(CartContext)
+  const { productsCount } = useContext(CartContext)
 
   const handleLoginClick = () => {
     navigate('/login')
@@ -41,6 +42,10 @@ const Header = () => {
     navigate('/explore')
   }
 
+  const handleCartClick = () => {
+    dispatch(toggleCart())
+  }
+
   return (
     <S.HeaderContainer>
       <S.HeaderTitle onClick={handleLogoClick}>CLUB CLOTHING</S.HeaderTitle>
@@ -58,7 +63,7 @@ const Header = () => {
           <S.HeaderItem onClick={handleSignOutClick}>Sair</S.HeaderItem>
         )}
 
-        <S.HeaderItem onClick={toggleCart}>
+        <S.HeaderItem onClick={handleCartClick}>
           <BsCart3 size={25} />
           <p style={{ marginLeft: 5 }}>{productsCount}</p>
         </S.HeaderItem>
