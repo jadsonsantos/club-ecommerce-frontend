@@ -6,6 +6,7 @@ import persistReducer from 'redux-persist/es/persistReducer'
 import persistStore from 'redux-persist/es/persistStore'
 // @ts-ignore
 import storage from 'redux-persist/lib/storage'
+import { thunk } from 'redux-thunk'
 
 import rootReducer from './root-reducer'
 
@@ -22,7 +23,7 @@ const persistedRootReducer: typeof rootReducer = persistReducer(
 
 export const store = configureStore({
   reducer: persistedRootReducer,
-  middleware: () => new Tuple(logger)
+  middleware: () => new Tuple(thunk, logger)
 })
 
 export const persistedStore = persistStore(store)

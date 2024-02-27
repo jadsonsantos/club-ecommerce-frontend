@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import CategoryContextProvider from 'contexts/categories.context'
 // @ts-ignore
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistedStore, store } from 'store/store'
@@ -16,9 +15,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistedStore}>
-        <CategoryContextProvider>
-          <App />
-        </CategoryContextProvider>
+        <App />
       </PersistGate>
     </Provider>
   </React.StrictMode>
