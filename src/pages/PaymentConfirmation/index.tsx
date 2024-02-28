@@ -6,7 +6,7 @@ import {
 } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { clearCartProducts } from 'store/reducers/cart/cart.actions'
+import { clearCartProducts } from 'store/toolkit/cart/cart.slice'
 
 import CustomButton from 'components/CustomButton'
 import Header from 'components/Header'
