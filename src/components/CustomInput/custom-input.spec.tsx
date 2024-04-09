@@ -1,8 +1,9 @@
-import { render } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import Colors from 'theme/theme.colors'
 
 import CustomInput from '.'
+
+import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 describe('Custom Input', () => {
   it('should render with error if hasError is true', () => {

@@ -1,15 +1,16 @@
 import { BsCartCheck } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
+import CartItem from 'components/CartItem'
+import CustomButton from 'components/CustomButton'
+
 import { useAppSelector } from 'hooks/redux.hooks'
 import {
   selectProductsCount,
   selectProductsTotalPrice
 } from 'store/reducers/cart/cart.selectors'
 import { toggleCart } from 'store/toolkit/cart/cart.slice'
-
-import CartItem from 'components/CartItem'
-import CustomButton from 'components/CustomButton'
 
 import {
   CartContainer,

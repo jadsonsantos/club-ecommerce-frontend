@@ -25,6 +25,7 @@
         "newlinesBetween": "always",
         "groups": [
           ["/^react/"],
+          "/^@reduxjs/",
           "/absolute/",
           "/^firebase/",
           ["/pages/"],
@@ -32,6 +33,7 @@
           [
             "/config/",
             "/contexts/",
+            "/guards/",
             "/hooks/",
             "/store/",
             "/theme/",

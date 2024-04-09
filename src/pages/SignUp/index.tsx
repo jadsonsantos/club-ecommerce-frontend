@@ -2,15 +2,15 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FiLogIn } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from 'hooks/redux.hooks'
-import SignUpForm from 'types/signup.types'
-import validator from 'validator'
 
 import CustomButton from 'components/CustomButton'
 import CustomInput from 'components/CustomInput'
 import Header from 'components/Header'
 import InputErrorMessage from 'components/InputErrorMessage'
 import Loading from 'components/Loading'
+
+import { useAppSelector } from 'hooks/redux.hooks'
+import SignUpForm from 'types/signup.types'
 
 import {
   SignUpContainer,
@@ -19,6 +19,8 @@ import {
   SignUpInputContainer
 } from './styles'
 import useSignUp from './useSignUp'
+
+import validator from 'validator'
 
 const SignUp = () => {
   const {

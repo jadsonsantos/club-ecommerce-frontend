@@ -1,7 +1,9 @@
 import React, { createContext, useState } from 'react'
+
+import { collection, getDocs } from 'firebase/firestore'
+
 import { db } from 'config/firebase.config'
 import { categoryConverter } from 'converters/firestore.converters'
-import { collection, getDocs } from 'firebase/firestore'
 import Category from 'types/category.types'
 
 interface ICategoryContext {

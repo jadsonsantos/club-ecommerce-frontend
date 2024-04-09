@@ -1,12 +1,10 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { auth, db } from 'config/firebase.config'
-import { userConverter } from 'converters/firestore.converters'
+
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import AuthenticationGuard from 'guards/authentication.guard'
-import { useAppSelector } from 'hooks/redux.hooks'
+
 import CategoryDetails from 'pages/CategoryDetails'
 import CheckoutPage from 'pages/Checkout'
 import Explore from 'pages/Explore'
@@ -14,10 +12,15 @@ import Home from 'pages/Home'
 import LoginPage from 'pages/Login'
 import PaymentConfirmationPage from 'pages/PaymentConfirmation'
 import SignUp from 'pages/SignUp'
-import { loginUser, logoutUser } from 'store/toolkit/user/user.slice'
 
 import Cart from 'components/Cart'
 import Loading from 'components/Loading'
+
+import { auth, db } from 'config/firebase.config'
+import { userConverter } from 'converters/firestore.converters'
+import AuthenticationGuard from 'guards/authentication.guard'
+import { useAppSelector } from 'hooks/redux.hooks'
+import { loginUser, logoutUser } from 'store/toolkit/user/user.slice'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)

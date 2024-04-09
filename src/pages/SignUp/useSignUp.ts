@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { auth, db } from 'config/firebase.config'
+
 import {
   AuthError,
   AuthErrorCodes,
   createUserWithEmailAndPassword
 } from 'firebase/auth'
 import { addDoc, collection } from 'firebase/firestore'
+
+import { auth, db } from 'config/firebase.config'
 import SignUpForm from 'types/signup.types'
 
 const useSignUp = (setError: any) => {

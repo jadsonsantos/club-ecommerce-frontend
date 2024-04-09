@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react'
-
 import CustomButton from '.'
+
+import { render } from '@testing-library/react'
 
 describe('Custom Button', () => {
   it('should render with correct children', () => {

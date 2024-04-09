@@ -1,4 +1,7 @@
 import { configureStore, Tuple } from '@reduxjs/toolkit'
+
+import rootReducer from './root-reducer'
+
 import logger from 'redux-logger'
 // @ts-ignore
 import persistReducer from 'redux-persist/es/persistReducer'
@@ -7,8 +10,6 @@ import persistStore from 'redux-persist/es/persistStore'
 // @ts-ignore
 import storage from 'redux-persist/lib/storage'
 import { thunk } from 'redux-thunk'
-
-import rootReducer from './root-reducer'
 
 const persistConfig = {
   key: 'root',
