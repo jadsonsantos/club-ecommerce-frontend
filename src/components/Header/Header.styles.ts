@@ -1,12 +1,16 @@
 import styled from 'styled-components'
+
 import Colors from 'theme/theme.colors'
+
+export const Header = styled.header`
+  background-color: ${Colors.background.dark};
+`
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  background-color: ${Colors.background.dark};
   display: flex;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 20px 0;
   color: ${Colors.text.white};
 
   @media (max-width: 768px) {
@@ -15,6 +19,7 @@ export const HeaderContainer = styled.div`
     justify-content: center;
   }
 `
+
 export const HeaderTitle = styled.h2`
   font-weight: bold;
   font-size: 1.5rem;
@@ -37,6 +42,7 @@ export const HeaderItems = styled.div`
     justify-content: space-evenly;
   }
 `
+
 export const HeaderItem = styled.div`
   font-weight: 600;
   font-size: 1rem;
