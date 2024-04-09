@@ -26,15 +26,16 @@
         "groups": [
           ["/^react/"],
           "/absolute/",
+          "/^firebase/",
           ["/pages/"],
           ["/components/"],
           [
+            "/config/",
             "/utils/",
             "/services/",
             "/hooks/",
             "/contexts/",
             "/data/",
-            "/assets/",
             "/types/",
             "/store/"
           ],
