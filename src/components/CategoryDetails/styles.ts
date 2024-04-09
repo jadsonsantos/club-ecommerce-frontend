@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 0px 40px 20px 40px;
+  padding: 0px 0 20px 0;
 `
 
 export const CategoryTitle = styled.div`
@@ -16,12 +16,12 @@ export const CategoryTitle = styled.div`
 
 export const ProductsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: start;
   margin-top: 5px;
-  grid-row-gap: 20px;
+  grid-gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
   }
