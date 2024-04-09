@@ -10,7 +10,8 @@ export const PaymentConfirmationContainer = styled.div`
 
 export const PaymentConfirmationContent = styled.div`
   text-align: center;
-  width: 500px;
+  max-width: 500px;
+
   p {
     margin-top: 15px;
     margin-bottom: 15px;
