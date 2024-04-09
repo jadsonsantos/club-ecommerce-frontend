@@ -15,3 +15,9 @@ html,
 body {
   height: 100%;
 }
+
+.container {
+  max-width: 1320px; /*1260 + 30 + 30*/
+  padding: 0 30px;
+  margin: 0 auto;
+}
