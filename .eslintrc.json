@@ -31,13 +31,11 @@
           ["/components/"],
           [
             "/config/",
-            "/utils/",
-            "/services/",
-            "/hooks/",
             "/contexts/",
-            "/data/",
-            "/types/",
-            "/store/"
+            "/hooks/",
+            "/store/",
+            "/theme/",
+            "/types/"
           ],
           ["parent", "sibling", "index"],
           ["/\\.scss$/"]
