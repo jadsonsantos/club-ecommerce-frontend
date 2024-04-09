@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+
 import User from 'types/user.types'
 
 interface IUserContext {

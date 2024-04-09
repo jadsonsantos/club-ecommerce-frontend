@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import Category from 'types/category.types'
 
 import * as S from './CategoryItem.styles'

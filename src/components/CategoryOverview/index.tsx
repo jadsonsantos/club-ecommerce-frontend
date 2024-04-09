@@ -1,7 +1,8 @@
 import { FunctionComponent } from 'react'
-import Category from 'types/category.types'
 
 import ProductItem from 'components/ProductItem'
+
+import Category from 'types/category.types'
 
 import { CategoryContainer, CategoryTitle, ProductsContainer } from './styles'
 

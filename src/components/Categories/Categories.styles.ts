@@ -5,18 +5,18 @@ export const CategoriesContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding: 30px;
 `
 
 export const CategoriesContent = styled.div`
+  width: 1260px;
   height: 100%;
-  width: 1920px;
   display: grid;
   grid-template-areas:
     'a b'
     'c c'
     'd e';
-  grid-gap: 15px;
-  padding: 30px;
+  grid-gap: 20px;
 
   & div:nth-child(1) {
     grid-area: a;
@@ -38,7 +38,7 @@ export const CategoriesContent = styled.div`
     grid-area: e;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
     & div:nth-child(1) {

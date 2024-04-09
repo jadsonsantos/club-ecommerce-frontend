@@ -14,28 +14,35 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
+  "plugins": ["react", "@typescript-eslint", "eslint-plugin-import-helpers"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-use-before-define": "off",
     "space-before-function-paren": "off",
-    "simple-import-sort/imports": [
-      "error",
+    "import-helpers/order-imports": [
+      "warn",
       {
+        "newlinesBetween": "always",
         "groups": [
-          // Packages `react` related packages come first.
-          ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@|components)(/.*|$)"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Parent imports. Put `..` last.
-          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-          // Style imports.
-          ["^.+\\.?(css)$"]
-        ]
+          ["/^react/"],
+          "/^@reduxjs/",
+          "/absolute/",
+          "/^firebase/",
+          ["/pages/"],
+          ["/components/"],
+          [
+            "/config/",
+            "/contexts/",
+            "/guards/",
+            "/hooks/",
+            "/store/",
+            "/theme/",
+            "/types/"
+          ],
+          ["parent", "sibling", "index"],
+          ["/\\.scss$/"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ]
   }

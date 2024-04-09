@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import ChildrenProps from 'types/children.types'
 
 import Header from 'components/Header'
 import Loading from 'components/Loading'
+
+import ChildrenProps from 'types/children.types'
 
 const AuthenticationGuard: React.FC<ChildrenProps> = ({ children }) => {
   const { isAuthenticated } = useSelector(

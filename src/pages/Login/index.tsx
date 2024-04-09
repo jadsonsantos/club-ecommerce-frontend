@@ -3,15 +3,15 @@ import { useForm } from 'react-hook-form'
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from 'hooks/redux.hooks'
-import LogInForm from 'types/login.types'
-import validator from 'validator'
 
 import CustomButton from 'components/CustomButton'
 import CustomInput from 'components/CustomInput'
 import Header from 'components/Header'
 import InputErrorMessage from 'components/InputErrorMessage'
 import Loading from 'components/Loading'
+
+import { useAppSelector } from 'hooks/redux.hooks'
+import LogInForm from 'types/login.types'
 
 import {
   LoginContainer,
@@ -21,6 +21,8 @@ import {
   LoginSubtitle
 } from './Login.styles'
 import useLogin from './useLogin'
+
+import validator from 'validator'
 
 const LoginPage = () => {
   const {

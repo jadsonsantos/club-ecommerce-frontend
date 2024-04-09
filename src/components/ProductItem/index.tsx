@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react'
 import { BsCartPlus } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { addProductToCart } from 'store/toolkit/cart/cart.slice'
-import Product from 'types/product.types'
 
 import CustomButton from 'components/CustomButton'
+
+import { addProductToCart } from 'store/toolkit/cart/cart.slice'
+import Product from 'types/product.types'
 
 import { ProductContainer, ProductImage, ProductInfo } from './styles'
 

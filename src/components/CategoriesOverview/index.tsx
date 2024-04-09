@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+
+import CategoryOverview from 'components/CategoryOverview'
+import Container from 'components/Container'
+import Loading from 'components/Loading'
+
 import { useAppSelector } from 'hooks/redux.hooks'
 import { fetchCategories } from 'store/toolkit/category/category.slice'
 
-import CategoryOverview from 'components/CategoryOverview'
-import Loading from 'components/Loading'
-
-import { Container } from './styles'
+import * as S from './styles'
 
 const CategoriesOverview = () => {
   const { categories, isLoading } = useAppSelector(
@@ -24,11 +26,13 @@ const CategoriesOverview = () => {
   if (isLoading) return <Loading />
 
   return (
-    <Container>
-      {categories.map((category) => (
-        <CategoryOverview key={category.id} category={category} />
-      ))}
-    </Container>
+    <S.Container>
+      <Container>
+        {categories.map((category) => (
+          <CategoryOverview key={category.id} category={category} />
+        ))}
+      </Container>
+    </S.Container>
   )
 }
 

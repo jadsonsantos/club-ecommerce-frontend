@@ -1,20 +1,13 @@
-import { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent } from 'react'
 import { BiChevronLeft } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
-import { db } from 'config/firebase.config'
-import { categoryConverter } from 'converters/firestore.converters'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import Category from 'types/category.types'
 
+import Container from 'components/Container'
 import Loading from 'components/Loading'
 import ProductItem from 'components/ProductItem'
 
-import {
-  CategoryTitle,
-  Container,
-  IconContainer,
-  ProductsContainer
-} from './styles'
+import useCategoryDetails from 'hooks/useCategoryDetails'
+
+import * as S from './styles'
 
 interface CategoryDetailsProps {
   categoryId: string
@@ -23,55 +16,27 @@ interface CategoryDetailsProps {
 const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
   categoryId
 }) => {
-  const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
-  const [category, setCategory] = useState<Category | null>(null)
-
-  const handleBackLink = () => {
-    navigate('/')
-  }
-
-  useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        setIsLoading(true)
-        const querySnapShot = await getDocs(
-          query(
-            collection(db, 'categories').withConverter(categoryConverter),
-            where('id', '==', categoryId)
-          )
-        )
-
-        const category = querySnapShot.docs[0]?.data()
-
-        setCategory(category)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchCategory()
-  }, [])
+  const { isLoading, category, handleBackLink } = useCategoryDetails(categoryId)
 
   if (isLoading) return <Loading />
 
   return (
-    <Container>
-      <CategoryTitle>
-        <IconContainer onClick={handleBackLink}>
-          <BiChevronLeft size={36} />
-        </IconContainer>
-        <p>Expolorar {category?.displayName}</p>
-      </CategoryTitle>
+    <S.Container>
+      <Container>
+        <S.CategoryTitle>
+          <S.IconContainer onClick={handleBackLink}>
+            <BiChevronLeft size={36} />
+          </S.IconContainer>
+          <p>Expolorar {category?.displayName}</p>
+        </S.CategoryTitle>
 
-      <ProductsContainer>
-        {category?.products.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-      </ProductsContainer>
-    </Container>
+        <S.ProductsContainer>
+          {category?.products.map((product) => (
+            <ProductItem key={product.id} product={product} />
+          ))}
+        </S.ProductsContainer>
+      </Container>
+    </S.Container>
   )
 }
 

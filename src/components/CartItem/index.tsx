@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
+
 import {
   decreaseCartProductQuantity,
   increaseCartProductQuantity,
